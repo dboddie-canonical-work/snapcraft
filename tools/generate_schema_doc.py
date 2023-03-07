@@ -14,7 +14,7 @@ def print_type(name, typename, level):
         print(' * %s' % typename)
 
 def process_array(name, d, level):
-    print_type(name, 'array', level)
+    #print_type(name, 'array', level)
     min_items = d.get('minItems', 1)
     unique = {False: '', True: ' (unique)'}[d.get('uniqueItems', True)]
     if 'items' in d:
@@ -22,42 +22,49 @@ def process_array(name, d, level):
         if type(items) == dict:
             process_schema(name, items, level)
         else:
-            process_sequence(name, 'at least %i%s of' % (min_items, unique), items, level)
+            #print(name, 'at least %i%s of' % (min_items, unique))
+            process_sequence(items, level)
 
 def process_boolean(name, d, level):
-    print_type(name, 'boolean', level)
+    #print_type(name, 'boolean', level)
+    return
 
 def process_integer(name, d, level):
-    print_type(name, 'integer', level)
+    #print_type(name, 'integer', level)
+    return
 
 def process_null(name, d, level):
-    print_type(name, 'null', level)
+    #print_type(name, 'null', level)
+    return
 
 def process_object(name, d, level):
-    print_type(name, 'object', level)
     if 'properties' in d:
         print()
         for name, value in d['properties'].items():
             process_schema(name, value, level + 1)
+        print()
     elif 'patternProperties' in d:
         print()
         for name, value in d['patternProperties'].items():
             process_schema(name, value, level + 1)
+        print()
 
 def process_ref(name, d, level):
-    print_type(name, 'ref', level)
+    #print_type(name, 'ref', level)
+    print('(ref)')
     return
 
-def process_sequence(name, label, items, level):
-    indent(level)
-    print(' * ``%s`` %s' % (name, label))
+def process_sequence(items, level):
+    #indent(level)
+    #print(' * ``%s`` %s' % (name, label))
     print()
     for item in items:
         process_schema('', item, level + 1)
     print()
 
 def process_string(name, d, level):
-    print_type(name, 'string', level)
+    #print_type(name, 'string', level)
+    return
 
 handlers = {
     'array': process_array,
@@ -69,26 +76,40 @@ handlers = {
 }
 
 def process_schema(name, d, level):
+    indent(level)
+    print(' * ', end='')
+    if name:
+        print('``%s`` ' % name, end='')
+
     if 'type' in d:
         if type(d['type']) == list:
-            for t in d['type']:
-                handlers[t](name, d, level)
-                indent(level + 1)
-                print('   *or*')
+            types = d['type']
         else:
-            handlers[d['type']](name, d, level)
+            types = [d['type']]
+
+        print('(', end='')
+        l = len(types)
+        for t in types:
+            print(t, end='')
+            l -= 1
+            if l > 0:
+                indent(level + 1)
+                print(' *or* ', end='')
+        print(')')
+        for t in types:
+            handlers[t](name, d, level)
     elif '$ref' in d:
         process_ref(name, d, level)
     elif 'allOf' in d:
-        process_sequence(name, '(type must match all of these)', d['allOf'], level)
+        print('(type must match all of these)')
+        process_sequence(d['allOf'], level)
     elif 'anyOf' in d:
-        process_sequence(name, '(type can match any of these)', d['anyOf'], level)
+        print('(type can match any of these)')
+        process_sequence(d['anyOf'], level)
     elif 'pattern' in d:
-        indent(level)
-        print(' * pattern: ``%s``' % d['pattern'])
+        print('pattern: ``%s``' % d['pattern'])
     elif 'not' in d:
-        indent(level)
-        print(' * *not*')
+        print('*not*')
         print()
         process_schema('', d['not'], level + 1)
 
