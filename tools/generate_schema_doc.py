@@ -34,15 +34,16 @@ def process_null(name, d, level):
     return
 
 def process_object(name, d, level):
+    required = d.get('required', [])
     if 'properties' in d:
         print()
         for name, value in d['properties'].items():
-            process_schema(name, value, level + 1)
+            process_schema(name, value, level + 1, name in required)
         print()
     elif 'patternProperties' in d:
         print()
         for name, value in d['patternProperties'].items():
-            process_schema(name, value, level + 1)
+            process_schema(name, value, level + 1, name in required)
         print()
 
 def process_ref(name, d, level):
@@ -80,7 +81,7 @@ typenames = {
     'string': 'string'
 }
 
-def process_schema(name, d, level):
+def process_schema(name, d, level, required=False):
     if level >= 0:
         indent(level)
         if name:
@@ -90,6 +91,8 @@ def process_schema(name, d, level):
             print(' * ', end='')
         else:
             print('   ', end='')
+
+        if required: print('**required** ', end='')
 
     if 'type' in d:
         if type(d['type']) == list:
