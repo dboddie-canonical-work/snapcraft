@@ -32,7 +32,10 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Get dependencies
         run: |
-          sudo apt-get install -y tox libapt-pkg-dev
+          sudo apt-get install -y pip libapt-pkg-dev
+          git submodule update --init docs/sphinx-resources
+          pip install -r docs/requirements.txt
+          pip install -r docs/sphinx-resources/.sphinx/requirements.txt
       - name: Install a virtualenv
         run: |
           tox -e build-docs
