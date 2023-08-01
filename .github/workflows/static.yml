@@ -36,9 +36,9 @@ jobs:
           git submodule update --init docs/sphinx-resources
           pip install -r docs/requirements.txt
           pip install -r docs/sphinx-resources/.sphinx/requirements.txt
-      - name: Install a virtualenv
+      - name: Build HTML documentation
         run: |
-          tox -e build-docs
+          sphinx-build -b html -W docs docs/_build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
