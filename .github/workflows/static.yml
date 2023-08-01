@@ -32,7 +32,7 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Get dependencies
         run: |
-          sudo apt-get install -y tox
+          sudo apt-get install -y tox libapt-pkg-dev
       - name: Install a virtualenv
         run: |
           tox -e build-docs
