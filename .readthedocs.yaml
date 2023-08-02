@@ -5,6 +5,10 @@
 # Required
 version: 2
 
+submodules:
+  include:
+    - docs/sphinx-resources
+
 build:
   os: ubuntu-20.04
   tools:
@@ -30,5 +34,5 @@ sphinx:
 # and requirements required to build your docs
 python:
   install:
-    - requirements: docs/.sphinx/requirements.txt
     - requirements: docs/requirements.txt
+    - requirements: docs/sphinx-resources/.sphinx/requirements.txt

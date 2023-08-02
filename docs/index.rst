@@ -1,52 +1,67 @@
-.. snapcraft documentation root file
+.. 30905.md
 
-Snapcraft
-=========
+.. _snapcraft-documentation:
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
+Snapcraft documentation
+=======================
 
-   tutorials/index
-   howto/index
-   reference/index
-   explanation/index
+.. note::
+          **NOTE TO EDITORS**
 
-.. grid:: 1 1 2 2
+          This topic is currently under construction as we start to migrate our current documentation to use the `Diátaxis <https://diataxis.fr/>`__ framework.
 
-   .. grid-item-card:: :ref:`Tutorial <tutorial>`
+          See `Diátaxis, a new foundation for Canonical documentation <https://ubuntu.com/blog/diataxis-a-new-foundation-for-canonical-documentation>`__ for more details.
 
-      **Get started** with a hands-on introduction to Snapcraft
 
-   .. grid-item-card:: :ref:`How-to guides <howto>`
 
-      **Step-by-step guides** covering key operations and common tasks
+Snapcraft **builds**, **packages** and **publishes** snaps. It’s available for **Ubuntu**, many **other Linux distributions**, and **macOS**, and runs from the command line.
 
-.. grid:: 1 1 2 2
-   :reverse:
+With Snapcraft, developers can use platform-specific **plugins** and **extensions** to **streamline** and **simplify** the build process. Snaps can then be **tested and shared locally** before being published to the global `Snap Store <https://snapcraft.io/store>`__ within channels, tracks and branches to **finely control releases**.
 
-   .. grid-item-card:: :ref:`Reference <reference>`
+Snapcraft does all of this within a self-launched `LXD <https://linuxcontainers.org/lxd/docs/master/>`__ or `Multipass <https://multipass.run/docs>`__ **container**, or **natively** from your own environment, and includes **linting, debug and staging functions** to help solve problems. You can also incorporate Snapcraft package building into your CI systems, and **build snaps remotely** from either **GitHub** or our **Launchpad** build farm.
 
-      **Technical information** about Snapcraft
+From desktop applications, servers and cloud deployments, to embedded devices and IoT. From a single user to hundreds of thousands of users, Snapcraft can help.
 
-   .. grid-item-card:: :ref:`Explanation <explanation>`
+--------------
 
-      **Discussion and clarification** of key topics
+In this documentation
+---------------------
+
++-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+
+| :ref:`Tutorials <snapcraft-tutorials>`\  Get started - a hands-on introduction to building snaps with Snapcraft | :ref:`How-to guides <snapcraft-how-to-guides>` Step-by-step guides covering key operations and common tasks |
++-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+
+| :ref:`Reference <snapcraft-reference>` Technical information - plugins, extensions and architecture             | :ref:`Explanation <snapcraft-explanation-guides>` Concepts - discussion and clarification of key topics     |
++-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+
+
+--------------
 
 Project and community
-=====================
+---------------------
 
-Snapcraft is a member of the Canonical family. It's an open source project
-that warmly welcomes community projects, contributions, suggestions, fixes
-and constructive feedback.
+Snap and Snapcraft are members of the Ubuntu family. They’re both open source projects that welcome community involvement, contributions, suggestions, fixes and constructive feedback.
 
-* `Ubuntu Code of Conduct <https://ubuntu.com/community/code-of-conduct>`_
-* `Canonical contributor licenses agreement
-  <https://ubuntu.com/legal/contributors>`_
+-  `Our Code of Conduct <https://ubuntu.com/community/code-of-conduct>`__
+-  `Get support <https://forum.snapcraft.io/c/snap/14>`__
+-  `Join the Discourse forum <https://forum.snapcraft.io/>`__
+-  :ref:`How to contribute <documentation-guidelines>`
+-  `Roadmap <https://snapcraft.io/docs/the-snapd-roadmap>`__
 
-Indices and tables
-==================
+Thinking about using snap for your next project? `Get in touch! <https://forum.snapcraft.io/>`__
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+
+License
+-------
+
+.. image:: images/cc-by-nc-sa-3.0-88x31.png
+   :alt: License: CC BY-NC-SA 3.0
+
+This documentation is licensed under a `Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License`_.
+
+
+.. toctree::
+   :hidden:
+
+   snapcraft-tutorials
+   snapcraft-how-to-guides
+   snapcraft-reference
+   snapcraft-explanation-guides
